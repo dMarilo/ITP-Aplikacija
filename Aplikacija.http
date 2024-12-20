@@ -1,0 +1,6 @@
+@Aplikacija_HostAddress = http://localhost:5155
+
+GET {{Aplikacija_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
