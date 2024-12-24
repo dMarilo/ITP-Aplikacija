@@ -1,10 +1,13 @@
+global using Aplikacija.Services;
+
 using Aplikacija.Data;
 using Aplikacija.Interfaces;
-using Aplikacija.Services;
+using Aplikacija.Models;
+using Aplikacija.Services.service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -12,6 +15,9 @@ builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(build
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPizzaService, PizzaService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
